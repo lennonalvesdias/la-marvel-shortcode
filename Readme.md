@@ -27,7 +27,7 @@ Com o plugin Marvel Shortcode você pode integrar seu website em WordPress com t
 
 Screenshot do plugin em funcionamento:
 
-![MARVEL-SC](http://lennonalves.xyz/img/desenvolvidopor.png)
+![MARVEL-SC](https://github.com/lennonalvesdias/la-marvel-shortcode/blob/master/screenshot.png?raw=true)
 
 #### Recomendações Extras:
 
