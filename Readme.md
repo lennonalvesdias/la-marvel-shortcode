@@ -2,7 +2,7 @@
 
 [![LENNON](http://lennonalves.xyz/img/desenvolvidopor.png)](https://lennonalves.com)
 
-Com o plugin Marvel Shortcode você pode integrar seu website em WordPress com todo o universo da Márvel. Nele você pode receber informações de:
+Com o plugin Marvel Shortcode você pode integrar seu website em WordPress com todo o universo da Marvel. Nele você pode receber informações de:
 
   - Personagens
   - Histórias em Quadrinhos (HQ)

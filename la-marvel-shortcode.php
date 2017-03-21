@@ -28,7 +28,7 @@
 		$offset = ($pagina - 1) * $limit;		
 
 		//requisicao
-		$json = file_get_contents('http://gateway.marvel.com/v1/public/comics?apikey='.
+		$json = file_get_contents('http://gateway.marvel.com/v1/public/characters?apikey='.
 			$publickey.'&ts='.$ts.'&hash='.$hash.'&offset='.$offset.'&limit='.$limit);
 		$obj = json_decode($json);
 
@@ -54,7 +54,7 @@
 			break;
 			
 			default:
-			return "Requisição não parmitida.";
+			return "Requisição não permitida.";
 			break;
 		}
 	}
@@ -70,7 +70,7 @@
 				echo "<div class='col-xs-6 col-sm-3'>";
 					$imgurl = $personagem->thumbnail->path.".".$personagem->thumbnail->extension;
 					echo "<img src='$imgurl' class='img-rounded' />";
-					$nome = substr($personagem->title, 0, 20);
+					$nome = substr($personagem->name, 0, 40);
 					echo "<h4>$nome</h4>";
 				echo "</div>";
 			}
