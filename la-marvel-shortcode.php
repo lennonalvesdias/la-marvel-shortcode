@@ -13,6 +13,37 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 	Author URI: http://lennonalves.com
 	*/
 
+	//adicionar menu
+	add_action( 'admin_menu', 'my_plugin_menu' );
+
+	//inserir plugin ao menu
+	function my_plugin_menu() {
+		add_options_page( 'Opções do Plugin', 'Marvel SC', 'manage_options', 'my-unique-identifier', 'my_plugin_options' );
+	}
+
+	//pagina do plugin
+	function my_plugin_options() {
+		if ( !current_user_can( 'manage_options' ) )  {
+			wp_die( __( 'Você não tem permissão suficiente para acessar as configurações deste plugin.' ) );
+		}
+		
+		include('admin.php');
+
+		echo '</div>';
+	}
+
+	//funcao de inicializacao
+	function sc_register_activation() {
+		add_option("urlListaPersonagens");
+		add_option("urlExibePersonagem");
+	}
+
+	//funcao de desinstalacao
+	function sc_register_deactivation() {
+		delete_option("urlListaPersonagens");
+		delete_option("urlExibePersonagem");
+	}
+
 	//shortcode para exibir a lista de personagens // [sc_personagens_marvel]
 	function shortcode_personagens_marvel ( ) {
 		//variaveis
@@ -67,13 +98,15 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 		$personagens = $obj->data->results;
 
+		$urlEP = get_option("urlExibePersonagem");
+
 		$organizer = 1;
 		echo "<div class='container'>";
 		foreach ($personagens as $personagem) {
 			if ($organizer%4 == 1) echo "<div class='col-md-12'>";
 			echo "<div class='col-xs-6 col-sm-3'>";
 			$idPersonagem = $personagem->id;
-			echo "<a href='http://localhost:8888/wordpress/marvel/super-pagina-personagem/?id=$idPersonagem' >";
+			echo "<a href='$urlEP?id=$idPersonagem' >";
 			$imgurl = $personagem->thumbnail->path.".".$personagem->thumbnail->extension;
 			echo "<img src='$imgurl' class='img-rounded' />";
 			$nome = substr($personagem->name, 0, 40);
@@ -103,7 +136,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 		echo "</div>";
 	}
 
-	//shortcode para exibir a lista de personagens // [sc_personagem_marvel] $_GET['idPersonagem'] [/sc_personagem_marvel]
+	//shortcode para exibir a lista de personagens // [sc_personagem_marvel]
 	function shortcode_personagem_marvel( ){
 
 		$idPersonagem = $_GET['id'];
@@ -149,6 +182,8 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 	}
 
 	function exibePersonagem ( $obj ) {
+		$urlLP = get_option("urlListaPersonagens");
+
 		$personagem = $obj->data->results[0];
 		echo "<div class='container'>";
 		echo "<div class='col-md-4'>";
@@ -158,7 +193,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 		echo "<h5>$obj->attributionHTML</h5>";
 		echo "</div>";
 		echo "<div class='col-md-12'>";
-		echo "<a href='/wordpress/marvel'>Voltar para a lista de personagens</a>";
+		echo "<a href='$urlLP'>Voltar para a lista de personagens</a>";
 		echo "</div>";
 		echo "</div>";
 	}
