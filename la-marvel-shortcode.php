@@ -3,7 +3,7 @@
 	//https://codex.wordpress.org/pt-br:Escrevendo_um_Plugin
 
 	//bloquear acesso direto
-	defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 	/* 
 	Plugin Name: Marvel Shortcode by Lennon Alves
@@ -67,35 +67,39 @@
 
 		$personagens = $obj->data->results;
 
+		$organizer = 1;
 		echo "<div class='container'>";
-			foreach ($personagens as $personagem) {
-				echo "<div class='col-xs-6 col-sm-3'>";
-					//".shortcode_personagens_marvel()."
-					$idPersonagem = $personagem->id;
-					echo "<a href='http://localhost:8888/wordpress/marvel/super-pagina-personagem/?id=$idPersonagem' >";
-					$imgurl = $personagem->thumbnail->path.".".$personagem->thumbnail->extension;
-					echo "<img src='$imgurl' class='img-rounded' />";
-					$nome = substr($personagem->name, 0, 40);
-					echo "<h4>$nome</h4>";
-					echo "</a>";
-				echo "</div>";
-			}
-		echo "</div>";				
+		foreach ($personagens as $personagem) {
+			if ($organizer%4 == 1) echo "<div class='col-md-12'>";
+			echo "<div class='col-xs-6 col-sm-3'>";
+			$idPersonagem = $personagem->id;
+			echo "<a href='http://localhost:8888/wordpress/marvel/super-pagina-personagem/?id=$idPersonagem' >";
+			$imgurl = $personagem->thumbnail->path.".".$personagem->thumbnail->extension;
+			echo "<img src='$imgurl' class='img-rounded' />";
+			$nome = substr($personagem->name, 0, 40);
+			echo "<h4>$nome</h4>";
+			echo "</a>";
+			echo "</div>";
+			if ($organizer%4 == 0) echo "</div>";
+			$organizer++;
+		}
+		if ($organizer%4 != 1) echo "</div>";
+		echo "</div>";
 
 		$anterior = $pagina - 1;
 		$proxima = $pagina + 1;
 		
 		echo "<div class='container'>";
-			echo "<div class='col-md-6'>";
-			if ($offset >= $count) {
-				echo "<div style='float:left;' class='btn btn-default btn-xs'><a href='?pagina=$anterior'>Página Anterior</a></div>";
-			}
-			echo "</div>";
-			echo "<div class='col-md-6'>";
-			if ($offset <= ($total - $count)) {
-				echo "<div style='float:right;' class='btn btn-default btn-xs'><a href='?pagina=$proxima'>Próxima Página</a></div>";
-			}
-			echo "</div>";
+		echo "<div class='col-md-6'>";
+		if ($offset >= $count) {
+			echo "<div style='float:left;' class='btn btn-default btn-xs'><a href='?pagina=$anterior'>Página Anterior</a></div>";
+		}
+		echo "</div>";
+		echo "<div class='col-md-6'>";
+		if ($offset <= ($total - $count)) {
+			echo "<div style='float:right;' class='btn btn-default btn-xs'><a href='?pagina=$proxima'>Próxima Página</a></div>";
+		}
+		echo "</div>";
 		echo "</div>";
 	}
 
@@ -147,15 +151,15 @@
 	function exibePersonagem ( $obj ) {
 		$personagem = $obj->data->results[0];
 		echo "<div class='container'>";
-			echo "<div class='col-md-4'>";
-			echo "<h3>$personagem->name</h3>";
-			$imgurl = $personagem->thumbnail->path.".".$personagem->thumbnail->extension;
-			echo "<img src='$imgurl' class='img-rounded' />";
-			echo "<h5>$obj->attributionHTML</h5>";
-			echo "</div>";
-			echo "<div class='col-md-12'>";
-			echo "<a href='/wordpress/marvel'>Voltar para a lista de personagens</a>";
-			echo "</div>";
+		echo "<div class='col-md-4'>";
+		echo "<h3>$personagem->name</h3>";
+		$imgurl = $personagem->thumbnail->path.".".$personagem->thumbnail->extension;
+		echo "<img src='$imgurl' class='img-rounded' />";
+		echo "<h5>$obj->attributionHTML</h5>";
+		echo "</div>";
+		echo "<div class='col-md-12'>";
+		echo "<a href='/wordpress/marvel'>Voltar para a lista de personagens</a>";
+		echo "</div>";
 		echo "</div>";
 	}
 
