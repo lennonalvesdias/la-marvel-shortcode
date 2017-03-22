@@ -1,6 +1,6 @@
 # Marvel Shortcode by Lennon Alves
 
-[![LENNON](http://lennonalves.xyz/img/desenvolvidopor.png)](https://lennonalves.com)
+[![LENNON](http://lennonalves.xyz/img/desenvolvidopor.png)](http://lennonalves.com)
 
 Com o plugin Marvel Shortcode você pode integrar seu website em WordPress com todo o universo da Marvel. Nele você pode receber informações de:
 
