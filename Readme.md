@@ -18,22 +18,16 @@ Com o plugin Marvel Shortcode você pode integrar seu website em WordPress com t
 
 #### Como usar:
 
-  - Para usar você deve apenas inserir a shortcode dentro de seu site. Recomenda-se que seja dentro de uma página.
+Para usar você deve apenas inserir os shortcodes dentro de páginas do seu Wordpress. Recomenda-se que sejam páginas distintas, uma para listagens e outra para exibição do conteúdo individual.
 
-```sh
-[sc_personagens_marvel]
-```
-> O código acima exibe a lista de todos os personagens do Universo Marvel.
+ - Lista de shortcodes em funcionamento até momento:
 
-```sh
-[sc_personagem_marvel]
+```html
+[sc_personagens_marvel] //lista de personagens
+[sc_personagem_marvel]  //informações individuais do personagem
 ```
 
-> O código acima exibe informações de um personagem específico, recebido pelo parâmetro ?id=XXXXX da url.
-
-- Para não utilizar outros plugins como dependências, as linkagens entre a lista e as informações do personagens estão sendo fixas. Assim que implementada uma nova solução, o repositório será atualizado.
-
-> As URLS de direcionamento podem ser editadas em seu Painel Admnistrativo -> Configurações -> Marvel SC
+> Após criar suas páginas e inserir os shortcodes nelas, você deve configurar a linkagem em seu Painel Admnistrativo -> Configurações -> Marvel SC
 
 #### Imagem da Tela:
 

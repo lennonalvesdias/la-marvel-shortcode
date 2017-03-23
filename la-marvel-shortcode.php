@@ -34,14 +34,14 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 	//funcao de inicializacao
 	function sc_register_activation() {
-		add_option("urlListaPersonagens");
-		add_option("urlExibePersonagem");
+		add_option("pageListaPersonagens");
+		add_option("pageExibePersonagem");
 	}
 
 	//funcao de desinstalacao
 	function sc_register_deactivation() {
-		delete_option("urlListaPersonagens");
-		delete_option("urlExibePersonagem");
+		delete_option("pageListaPersonagens");
+		delete_option("pageExibePersonagem");
 	}
 
 	//shortcode para exibir a lista de personagens // [sc_personagens_marvel]
@@ -98,7 +98,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 		$personagens = $obj->data->results;
 
-		$urlEP = get_option("urlExibePersonagem");
+		$urlEP = get_option("pageExibePersonagem");
 
 		$organizer = 1;
 		echo "<div class='container'>";
@@ -182,7 +182,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 	}
 
 	function exibePersonagem ( $obj ) {
-		$urlLP = get_option("urlListaPersonagens");
+		$urlLP = get_option("pageListaPersonagens");
 
 		$personagem = $obj->data->results[0];
 		echo "<div class='container'>";
@@ -199,5 +199,4 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 	}
 
 	add_shortcode ('sc_personagens_marvel', 'shortcode_personagens_marvel');
-
 	add_shortcode ('sc_personagem_marvel', 'shortcode_personagem_marvel');

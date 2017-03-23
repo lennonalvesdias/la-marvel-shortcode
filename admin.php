@@ -1,22 +1,25 @@
 <?php
 
 $endereco = $_SERVER ['REQUEST_URI'];
-//echo $endereco;
 
-$urlLP = get_option("urlListaPersonagens");
-$urlEP = get_option("urlExibePersonagem");
+$pageLP = get_option("pageListaPersonagens");
+$pageEP = get_option("pageExibePersonagem");
 
-if ( isset( $_POST['urllistagem']) ) 
+if ( isset( $_POST['page-listagem']) ) 
 {
-	$urlLP = $_POST['urllistagem'];
-	update_option("urlListaPersonagens", $urlLP);
+	$pageLP = $_POST['page-listagem'];
+	update_option("pageListaPersonagens", $pageLP);
 }
 
-if ( isset( $_POST['urlpersonagem']) ) 
+if ( isset( $_POST['page-personagem']) ) 
 {
-	$urlEP = $_POST['urlpersonagem'];
-	update_option("urlExibePersonagem", $urlEP);
+	$pageEP = $_POST['page-personagem'];
+	update_option("pageExibePersonagem", $pageEP);
 }
+
+
+// receber paginas do blog
+
 
 ?>
 
@@ -24,28 +27,60 @@ if ( isset( $_POST['urlpersonagem']) )
 <header>
 </header>
 <body>
+
 	<div class="header">
 		<h1>Marvel Shortcode by Lennon Alves </h1>
-		<p><a href="https://github.com/lennonalvesdias/la-marvel-shortcode">Ler documentação do plugin.</a></p>
+		<p><a href="https://github.com/lennonalvesdias/la-marvel-shortcode" target="_blank">Ler documentação</a></p>
 	</div>
+
+	<hr style="height:1px; border:none; color:#c2c2c2; background-color:#c2c2c2; margin-top: 2px; margin-bottom: 10px;" />
 
 	<div class="container">
 
 		<form action="<?=$endereco?>" method="post">
 			<div class="form-group">
-				<p>Insira a URL da página de listagem dos personagens:</p>
-				<input type="text" id="urllistagem" name="urllistagem" class="form-control" value="<?=$urlLP?>" />
+				<li>Selecione a página configurada com o <i>shortcode</i> <b>[sc_personagens_marvel]</b></li>
+				<select name="page-listagem">
+					<option value=""><?php echo esc_attr( __( 'Escolha a página' ) ); ?></option> 
+					<?php 
+					$pages = get_pages(); 
+					foreach ( $pages as $page ) {
+						$option = '<option value="' . get_page_link( $page->ID ) . '">';
+						$option .= $page->post_title;
+						$option .= '</option>';
+						echo $option;
+					}
+					?>
+				</select>
+			<input type="submit" name="enviar" value="Selecionar" class="btn" />
 			</div>
-			<input type="submit" name="enviar" value="Enviar" class="btn" />
 		</form>
+
+		<p><b>Página selecionada:</b> <?=$pageLP?></p>
+
+		<hr style="height:1px; border:none; color:#c2c2c2; background-color:#c2c2c2; margin-top: 2px; margin-bottom: 10px;" />
 
 		<form action="<?=$endereco?>" method="post">
 			<div class="form-group">
-				<p>Insira a URL da página de informacoes de um personagem:</p>
-				<input type="text" id="urlpersonagem" name="urlpersonagem" class="form-control" value="<?=$urlEP?>" />
+				<li>Selecione a página configurada com o <i>shortcode</i> <b>[sc_personagens_marvel]</b></li>
+				<select name="page-personagem" > 
+					<option value=""><?php echo esc_attr( __( 'Escolha a página' ) ); ?></option> 
+					<?php 
+					$pages = get_pages(); 
+					foreach ( $pages as $page ) {
+						$option = '<option value="' . get_page_link( $page->ID ) . '">';
+						$option .= $page->post_title;
+						$option .= '</option>';
+						echo $option;
+					}
+					?>
+				</select>
+			<input type="submit" name="enviar" value="Selecionar" class="btn" />
 			</div>
-			<input type="submit" name="enviar" value="Enviar" class="btn" />
 		</form>
+
+		<p><b>Página selecionada:</b> <?=$pageEP?></p>
+
 	</div>
 </body>
 </html>
