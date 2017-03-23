@@ -34,12 +34,18 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 	//funcao de inicializacao
 	function sc_register_activation() {
+		add_option("marvelPublicKey");
+		add_option("marvelPrivateKey");
+
 		add_option("pageListaPersonagens");
 		add_option("pageExibePersonagem");
 	}
 
 	//funcao de desinstalacao
 	function sc_register_deactivation() {
+		delete_option("marvelPublicKey");
+		delete_option("marvelPrivateKey");
+
 		delete_option("pageListaPersonagens");
 		delete_option("pageExibePersonagem");
 	}
@@ -47,8 +53,8 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 	//shortcode para exibir a lista de personagens // [sc_personagens_marvel]
 	function shortcode_personagens_marvel ( ) {
 		//variaveis
-		$publickey = 'a80b3d6da752653db8e06bf115158301';
-		$privatekey = 'de2d8bb7ce1de8f871318cf9e18dbf137d89f83e';
+		$publickey = get_option("marvelPublicKey");
+		$privatekey = get_option("marvelPrivateKey");
 		$ts = '1';
 		$hash = md5($ts.$privatekey.$publickey);
 
