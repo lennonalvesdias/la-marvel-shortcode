@@ -1,8 +1,8 @@
-# Marvel Shortcode by Lennon Alves
+# Marvel Shortcode
 
 [![LENNON](https://img.shields.io/badge/desenvolvido%20por-LENNON-red.svg)](https://lennonalves.com.br)
 
-Com o plugin Marvel Shortcode você pode integrar seu website em WordPress com todo o universo da Marvel. Nele você pode receber informações de:
+Com o plugin Marvel *Shortcode* você pode integrar seu website em WordPress com todo o universo da Marvel. Nele você pode receber informações de:
 
   - Personagens
   - Histórias em Quadrinhos (HQ)
@@ -27,7 +27,7 @@ Para usar você deve apenas inserir sua Public Key e Private Key da Marvel API n
 [sc_personagem_marvel]  //informações individuais do personagem
 ```
 
-> Em seu | Painel Admnistrativo -> Configurações -> Marvel SC | você pode configurar as chaves de ativação e as páginas de exibição dos shortcodes.
+> Em seu **Painel Administrativo -> Configurações -> Marvel SC** você pode configurar as chaves de ativação e as páginas de exibição dos shortcodes.
 
 #### Imagem da Tela:
 
@@ -39,7 +39,4 @@ Screenshot do plugin em funcionamento:
 
   - Parte do plugin contém classes [Bootstrap], por isso recomendamos a utilização deste framework em seu tema.
 
-###### LIVRE PARA TODOS. QUER CONTRIBUIR? ME ENVIE UM [E-MAIL].
-
    [Bootstrap]: <http://getbootstrap.com/>
-   [E-MAIL]: <mailto:lennonalvesdias@gmail.com>
